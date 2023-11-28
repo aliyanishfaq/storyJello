@@ -2,6 +2,7 @@ import streamlit as st
 import os
 from litlocationGPT import gptResponse
 import re
+import { View, Text } from 'react-native';
 
 st.set_page_config(layout="wide")
 st.title('Story Jello')

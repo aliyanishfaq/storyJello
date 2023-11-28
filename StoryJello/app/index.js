@@ -40,21 +40,19 @@ export default function App() {
       options={{headerShown: false}}
       />
       <View style={styles.header}>
-        <Text style={styles.title}>Story Jello</Text>
+        <Text style={styles.title}>storyJello</Text>
       </View>
       <View style={styles.booksList}>
-        <Text style={{fontSize: windowHeight * 0.03}}>Dashboard</Text>
+        <Text style={{fontSize: windowHeight * 0.03}}>Hey! Which book do you want to read next?</Text>
         <View style={styles.booksRow}>
         <Link href={{
           pathname: '/DiscussionQuestion',
           params: { bookName: 'All The Beauty In The World', prompt: beautyBookMessage}}} >
-          <Image source={require('../assets/AllTheBeautyInTheWorldTitle.png')} style={{width: windowWidth * 0.35, height: windowHeight * 0.24}}/>
+          <Image source={require('../assets/AllTheBeautyInTheWorldTitle.png')} style={styles.imageStyle}/>
         </Link>
-        <Image source={require('../assets/CommunityTitle.png')} style={{width: windowWidth * 0.35, height: windowHeight * 0.24}}/>
+        <Image source={require('../assets/CommunityTitle.png')} style={styles.imageStyle}/>
         </View>
         <View style={styles.booksRow}>
-        <Image source={require('../assets/AllTheBeautyInTheWorldTitle.png')} style={{width: windowWidth * 0.35, height: windowHeight * 0.24}}/>
-        <Image source={require('../assets/CommunityTitle.png')} style={{width: windowWidth * 0.35, height: windowHeight * 0.24}}/>
         </View>
       </View>
       <StatusBar style="auto" />
@@ -65,27 +63,42 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#efe4f5',
     alignItems: 'center',
     gap: windowHeight * 0.05,
 
   },
   header: {
-    borderWidth: 4,
-    borderColor: 'red',
-    justifyContent: 'center',
-    padding: 10,
+    marginTop: windowHeight * 0.01, // Adjust the top margin as needed
+    width: windowWidth * 0.2, // Set the width of the circle
+    height: windowWidth * 0.2, // Set the height of the circle to make it round
+    borderRadius: windowWidth * 0.25, // Half of width or height to make perfect circle
+    backgroundColor: '#86eef7', // Set the circle color
+    justifyContent: 'center', // Center the content vertically
+    alignItems: 'center', // Center the content horizontally
+    alignSelf: 'center', // Center the circle itself horizontally in the view
   },
   title: {
-    fontSize: windowWidth * 0.1
+    color: 'white',
+    fontSize: windowWidth * 0.04, // Adjust font size as needed
+    fontWeight: 'bold',
+    textAlign: 'center', // Center the text
   },
   booksRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderWidth: 4,
-    borderColor: 'red',
+    borderWidth: 0,
+    borderColor: 'white',
     width: windowWidth * 0.9,
+    height: windowHeight * 0.415,
+  },
+  imageStyle: {
+    width: windowWidth * 0.35,
+    height: windowHeight * 0.4, // or any other value as per your requirement
+    borderWidth: 20, // Width of the border
+    borderColor: 'white', // Color of the border
+    // Add any other styling as needed
   },
   booksList: {
     alignItems: 'center',

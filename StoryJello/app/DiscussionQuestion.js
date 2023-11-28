@@ -60,14 +60,19 @@ const styles = StyleSheet.create({
 
   },
   header: {
-    margin: windowHeight * 0.01,
-    borderWidth: 4,
-    borderColor: 'red',
-    justifyContent: 'center',
-    padding: 10,
+    marginTop: windowHeight * 0.01, // Adjust the top margin as needed
+    width: windowWidth * 0.5, // Set the width of the circle
+    height: windowWidth * 0.5, // Set the height of the circle to make it round
+    borderRadius: windowWidth * 0.25, // Half of width or height to make perfect circle
+    backgroundColor: 'blue', // Set the circle color
+    justifyContent: 'center', // Center the content vertically
+    alignItems: 'center', // Center the content horizontally
+    alignSelf: 'center', // Center the circle itself horizontally in the view
   },
   title: {
-    fontSize: windowWidth * 0.1
+    color: 'white', // Set text color to contrast with the blue background
+    fontSize: windowWidth * 0.08, // Adjust font size as needed
+    textAlign: 'center', // Center the text
   },
   booksRow: {
     flexDirection: 'row',
