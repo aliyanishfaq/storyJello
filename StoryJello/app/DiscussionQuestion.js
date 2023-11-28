@@ -12,7 +12,24 @@ export default function App() {
     console.log("What is this?", prompt);
     const [responseText, setResponseText] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-
+    const extractDiscussionQuestions = (text) => {
+      const splitText = text.split('Discussion Questions:');
+      if (splitText.length > 1) {
+          return splitText[1].replace(/- /g, '\n- '); // Replace '- ' with '\n- ' to add a new line before each question
+      }
+      return '';
+    };
+    const extractBeforeDiscussionQuestions = (text) => {
+      const startTerm = "Book Recommendation:";
+      const endTerm = "Discussion Questions:";
+      const startIndex = text.indexOf(startTerm);
+      const endIndex = text.indexOf(endTerm);
+      if (startIndex !== -1 && endIndex !== -1) {
+          // Extract the text from the end of startTerm to the start of endTerm
+          return text.substring(startIndex + startTerm.length, endIndex).trim();
+      }
+      return ''; // Return an empty string if either term is not found
+    };
     useEffect(() => {
         const generateText = async () => {
           setIsLoading(true);
@@ -37,13 +54,24 @@ export default function App() {
                 }}
             />
         <View style={styles.header}>
-            <Text style={styles.title}>Story Jello</Text>
+            <Text style={styles.title}>storyJello</Text>
         </View>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         {isLoading ? (
             <ActivityIndicator size="large" color="#0000ff" />
         ) : (
-        <Text>{responseText}</Text>
+          <View style={styles.textContainer}>
+            <Text style={styles.questionTextStyle}>{extractBeforeDiscussionQuestions(responseText)}</Text>
+          </View>
+        )}
+        </View>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        {isLoading ? (
+            <ActivityIndicator size="large" color="#0000ff" />
+        ) : (
+          <View style={styles.textContainer}>
+            <Text style={styles.questionTextStyle}>{extractDiscussionQuestions(responseText)}</Text>
+          </View>
         )}
         </View>
         <StatusBar style="light" />
@@ -54,36 +82,61 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#efe4f5',
     alignItems: 'center',
     gap: windowHeight * 0.05,
 
   },
   header: {
-    marginTop: windowHeight * 0.01, // Adjust the top margin as needed
-    width: windowWidth * 0.5, // Set the width of the circle
-    height: windowWidth * 0.5, // Set the height of the circle to make it round
-    borderRadius: windowWidth * 0.25, // Half of width or height to make perfect circle
-    backgroundColor: 'blue', // Set the circle color
-    justifyContent: 'center', // Center the content vertically
-    alignItems: 'center', // Center the content horizontally
-    alignSelf: 'center', // Center the circle itself horizontally in the view
+    marginTop: windowHeight * 0.01, 
+    width: windowWidth * 0.2, 
+    height: windowWidth * 0.2, 
+    borderRadius: windowWidth * 0.25, 
+    backgroundColor: '#86eef7', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    alignSelf: 'center', 
   },
   title: {
-    color: 'white', // Set text color to contrast with the blue background
-    fontSize: windowWidth * 0.08, // Adjust font size as needed
-    textAlign: 'center', // Center the text
+    color: 'white',
+    fontSize: windowWidth * 0.04, 
+    fontWeight: 'bold',
+    textAlign: 'center', 
   },
   booksRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderWidth: 4,
-    borderColor: 'red',
+    borderWidth: 0,
+    borderColor: 'white',
     width: windowWidth * 0.9,
+    height: windowHeight * 0.415,
+    resizeMode: 'contain',  
+  },
+  imageStyle: {
+    width: windowWidth * 0.35,
+    height: windowHeight * 0.4,
+    borderWidth: 12, 
+    borderColor: 'white',
   },
   booksList: {
     alignItems: 'center',
     gap: windowHeight * 0.025,
+  },
+  textContainer: {
+    flexDirection: 'row',
+    borderWidth: 8, 
+    borderColor: 'white', 
+    padding: 10, 
+    margin: 5, 
+    width: windowWidth * 0.9,
+    height: windowHeight * 0.3,
+  },
+  questionTextStyle: {
+    fontSize: 16, 
+    color: 'black', 
+    textAlign: 'left', 
+    padding: 10, 
   }
 });
+

@@ -69,20 +69,20 @@ const styles = StyleSheet.create({
 
   },
   header: {
-    marginTop: windowHeight * 0.01, // Adjust the top margin as needed
-    width: windowWidth * 0.2, // Set the width of the circle
-    height: windowWidth * 0.2, // Set the height of the circle to make it round
-    borderRadius: windowWidth * 0.25, // Half of width or height to make perfect circle
-    backgroundColor: '#86eef7', // Set the circle color
-    justifyContent: 'center', // Center the content vertically
-    alignItems: 'center', // Center the content horizontally
-    alignSelf: 'center', // Center the circle itself horizontally in the view
+    marginTop: windowHeight * 0.01,
+    width: windowWidth * 0.2, 
+    height: windowWidth * 0.2, 
+    borderRadius: windowWidth * 0.25, 
+    backgroundColor: '#86eef7', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    alignSelf: 'center', 
   },
   title: {
     color: 'white',
-    fontSize: windowWidth * 0.04, // Adjust font size as needed
+    fontSize: windowWidth * 0.04, 
     fontWeight: 'bold',
-    textAlign: 'center', // Center the text
+    textAlign: 'center', 
   },
   booksRow: {
     flexDirection: 'row',
@@ -92,13 +92,13 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     width: windowWidth * 0.9,
     height: windowHeight * 0.415,
+    resizeMode: 'contain',  
   },
   imageStyle: {
     width: windowWidth * 0.35,
-    height: windowHeight * 0.4, // or any other value as per your requirement
-    borderWidth: 20, // Width of the border
-    borderColor: 'white', // Color of the border
-    // Add any other styling as needed
+    height: windowHeight * 0.4,
+    borderWidth: 12, 
+    borderColor: 'white',
   },
   booksList: {
     alignItems: 'center',
