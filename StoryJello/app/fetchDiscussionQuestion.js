@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const beautyBookMessage = [
+const beautyBookMessages = [
     {
       "role": "system",
       "content": `Do you know about the following book?
@@ -33,21 +33,24 @@ const fetchChatGPTResponse = async (prompt) => {
     console.log("Does prompt get here?",prompt)
   try {
     const response = await axios.post(
-        'https://api.openai.com/v1/chat/completions', // Replace with the correct endpoint
+        'https://api.anthropic.com/v1/messages',
       { 
-        model: 'gpt-3.5-turbo',
-        messages: beautyBookMessage,
+        model: 'claude-3-sonnet-20240229',
+        max_tokens: 1000,
+        messages: beautyBookMessages,
       },
       {
         headers: {
-          'Authorization': `Bearer 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`, // Replace with your actual API key
+          'Content-Type': 'application/json',
+          'x-api-key': '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', // Replace with your actual Anthropic API key
+          'anthropic-version': '2023-06-01'
         }
       }
     );
 
-    return response.data.choices[0].message.content;
+    return response.data.content[0].text;
   } catch (error) {
-    console.error('Error fetching response from OpenAI:', error);
+    console.error('Error fetching response from Anthropic:', error);
   }
   return 'failed to generate a response';
 };
