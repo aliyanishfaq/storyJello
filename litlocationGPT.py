@@ -1,11 +1,15 @@
-import openai
+import anthropic
 
 
 def gptResponse(messages):
-    response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=messages,
-    api_key='{YOUR API KEY}'
+    client = anthropic.Anthropic(
+        api_key='{YOUR API KEY}'
+    )
+    response = client.messages.create(
+        model="claude-3-sonnet-20240229",
+        messages=messages,
+        max_tokens=1000
     )
     print(response)
-    return response['choices'][-1]['message']['content']
+    return response.content[0].text
+
