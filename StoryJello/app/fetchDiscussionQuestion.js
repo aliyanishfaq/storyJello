@@ -40,7 +40,7 @@ const fetchChatGPTResponse = async (prompt) => {
       },
       {
         headers: {
-          'Authorization': `Bearer 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`, // Replace with your actual API key
+          'Authorization': `OPENAI_API_KEY`, // Replace with your actual API key
         }
       }
     );
