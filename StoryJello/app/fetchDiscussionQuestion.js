@@ -35,12 +35,12 @@ const fetchChatGPTResponse = async (prompt) => {
     const response = await axios.post(
         'https://api.openai.com/v1/chat/completions', // Replace with the correct endpoint
       { 
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4o-mini',
         messages: beautyBookMessage,
       },
       {
         headers: {
-          'Authorization': `OPENAI_API_KEY`, // Replace with your actual API key
+          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`, // Replace with your actual API key
         }
       }
     );
@@ -53,3 +53,4 @@ const fetchChatGPTResponse = async (prompt) => {
 };
 
 export default fetchChatGPTResponse;
+
